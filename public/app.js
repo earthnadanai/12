@@ -6,15 +6,17 @@ const addImagestoGallery = (res) => {
     <section class="photo">
     <header class="photo__header">
       <div class="photo__header-column">
+      <a href = "profile.html?username=${element.user.username}" >
         <img
             class="photo__avatar"
             src=${
               element.user.profile_image.small
             }
             />
+            </a>
         </div>
         <div class="photo__header-column">
-            <span class="photo__username">${element.user.username}</span>
+            <span class="photo__username"><a href = "profile.html?username=${element.user.username}" >${element.user.username}</a></span>
         </div>
       </header>
       <div class="photo__file-container">
@@ -37,7 +39,7 @@ const addImagestoGallery = (res) => {
                   <span class="photo__likes">${element.likes}likes</span>
                   <div class="photo__comments">
                             <div class="photo__comment">
-                  <span class="photo__comment-author">${element.user.username}</span>${element.alt_description}
+                  <span class="photo__comment-author"><a href = "profile.html?username=${element.user.username}" >${element.user.username}</a></span>${element.alt_description}
                   </div>
                   </div>
             </div>
@@ -71,7 +73,9 @@ const removeAllPhoto = () => {
   galleryElement.innerHTML = "";
 };
 const searchPhoto = (event) => {
+  //= คือการกำหนดค่า
   const keyword = event.target.value;
+  //=== คือเปรียบเทียบค่าทั้ง 2 ฝั่งและชนิดของมัน
   if (event.key === "Enter" && keyword) {
       removeAllPhoto();
       //5. Call API
@@ -79,7 +83,9 @@ const searchPhoto = (event) => {
   }
 };
 const main = () => {
+  //หาองค์ประกอบของ class = search แล้วเก็บไว้ในตัวแปล inputElement
   const inputElement = document.querySelector(".search");
+  //
   inputElement.addEventListener("keydown", searchPhoto);
 };
 main();
